@@ -1,0 +1,273 @@
+body.upload-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+.upload-header {
+  background-color: #13296b;
+  color: white;
+  padding: 3rem 2rem 6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-header-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  height: 60px;
+  margin-right: 1rem;
+}
+
+.header-text .system-title {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.header-text .subtitle {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.upload-main {
+  position: relative;
+  z-index: 2;
+}
+
+.phase1-card {
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  margin: -60px auto 2rem;
+  padding: 2.5rem;
+  border-radius: 12px;
+}
+
+.form-title {
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.custom-submit {
+  margin-top: 20px;
+  background-color: #13296b;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-submit:hover {
+  background-color: #4b95eb;
+}
+
+.file-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.remove-btn {
+  background-color: transparent;
+  color: #13296b;
+  border: 1px solid #13296b;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+}
+
+.remove-btn:hover {
+  background-color: #13296b;
+  color: white;
+}
+
+.back-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: #13296b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-button:hover {
+    color: #4b95eb;
+}
+
+/* Validation */
+.was-validated .form-control:invalid {
+  border-color: #dc3545;
+}
+
+.was-validated .form-control:valid {
+  border-color: #198754;
+}
+
+.invalid-feedback {
+  display: none;
+  color: #dc3545;
+  font-size: 0.9rem;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback {
+  display: block;
+}
+
+input:focus, button:focus {
+  outline: 2px solid #4b95eb;
+  outline-offset: 2px;
+}
+/* Index Page Styles */
+.index-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.index-logo {
+  height: 90px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.index-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 500px;
+}
+
+.index-container h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #4b95eb;
+  color: white;
+}
+.btn-phase1,
+.btn-impact {
+  background-color: #13296b;
+  color: white;
+}
+
+.btn-phase1:hover,
+.btn-impact:hover {
+  background-color: #4b95eb;
+}
+/* Custom size for search button inside form */
+.search-btn {
+  background-color: #13296b;
+  min-width: 3px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  height: auto;
+  line-height: 1.5;
+}
+.search-btn:hover {
+  background-color: #4b95eb;
+}
+
+
+
+
+
+/* === HR Dashboard Table Styling === */
+.custom-table thead {
+  background-color: #13296b; /* your system primary blue */
+  color: white;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f0f6ff; /* light blue highlight on hover */
+}
+
+.custom-table th,
+.custom-table td {
+  vertical-align: middle;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Optional: zebra-striping */
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #13296b;
+}
+.custom-table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* === Table Header Styling for HR Dashboard === */
+.custom-table-header {
+  background-color: #13296b;
+  color: #ffffff;
+}
+
+.custom-table-header th {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 12px 10px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #4b95eb;
+}
