@@ -72,15 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="upload-page">
 <div class="container mt-5">
 
-    <header class="upload-header">
-        <div class="upload-header-content">
-            <img src="image/logo.jpg" alt="Logo" class="header-logo">
-            <div class="header-text">
-                <h1 class="system-title">DOST X Training Impact Assessment</h1>
-                <p class="subtitle">Phase 1</p>
-            </div>
-        </div>
-    </header>
+<header class="hero">
+    <img src="image/masthead.png" alt="DOST Logo" />
+</header>
     <main class="upload-main container">
         <div class="card phase1-card">
             <h2 class="form-title">Training Input Form</h2>
@@ -165,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="invalid-feedback">Please upload a valid file.</div>
                 <button type="submit" class="custom-submit">Submit</button>
 
-                <a href="index.php" class="back-button">← Back to Home</a>
+                <a href="index.php" class="back-button"> Back to Home</a>
             </form>
         </div>
     </main>

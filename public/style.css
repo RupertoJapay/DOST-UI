@@ -1,9 +1,29 @@
+.index-page {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+.index-btn-custom {
+  background: #13296b;
+  color: #fff;
+  border: none;
+}
+.index-btn-custom:hover {
+  background: #065aad;
+}
+
 body.upload-page {
   font-family: Arial, sans-serif;
   background-color: #f4f6f9;
   margin: 0;
   padding: 0;
 }
+
+
+
+
+
 
 .upload-header {
   background-color: #13296b;
@@ -53,8 +73,38 @@ body.upload-page {
 .form-title {
   font-size: 1.7rem;
   margin-bottom: 2rem;
-  color: #333;
+  text-align: center;
+  color: #13296b;
+  font-weight: 700;
+  font-size: 1.8rem;
+  
 }
+:root {
+      --primary: #13296b;
+      --accent: #4b95eb;
+      --glass: rgba(255, 255, 255, 0.95);
+    }
+.hero {
+      background-color: var(--primary);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+.hero img {
+      max-height: 65px;
+}
+header.hero{
+  margin-bottom: 5rem;
+}
+.upload-main container {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
 label {
   font-weight: bold;
@@ -86,7 +136,8 @@ label {
 }
 
 .custom-submit:hover {
-  background-color: #4b95eb;
+  background-color: #065aad;
+  color: white;
 }
 
 .file-input-group {
@@ -122,7 +173,9 @@ label {
 }
 
 .back-button:hover {
-    color: #4b95eb;
+    color: #065aad;
+    text-decoration: underline;
+    color:#13296b
 }
 
 /* Validation */
@@ -192,7 +245,7 @@ button {
 }
 
 button:hover {
-  background-color: #4b95eb;
+  background-color: #065aad;
   color: white;
 }
 .btn-phase1,
@@ -203,7 +256,8 @@ button:hover {
 
 .btn-phase1:hover,
 .btn-impact:hover {
-  background-color: #4b95eb;
+  background-color: #065aad;  
+  color:white;
 }
 /* Custom size for search button inside form */
 .search-btn {
@@ -223,7 +277,8 @@ button:hover {
   line-height: 1.5;
 }
 .search-btn:hover {
-  background-color: #4b95eb;
+  background-color: #065aad;
+  color: white;
 }
 
 
@@ -237,7 +292,7 @@ button:hover {
 }
 
 .custom-table tbody tr:hover {
-  background-color: #f0f6ff; /* light blue highlight on hover */
+  background-color: #065aad; /* light blue highlight on hover */
 }
 
 .custom-table th,

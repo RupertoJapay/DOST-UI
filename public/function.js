@@ -32,4 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.getElementById('statusFilter').addEventListener('change', function() {
+      this.form.submit();
+});
+
 
