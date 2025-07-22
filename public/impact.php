@@ -37,127 +37,174 @@ if (isset($_POST['feedback_submit'])) {
     $entries = [];
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Training Impact Assessment - Phase 2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Impact Assessment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f9;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background-color: #13296b;
+      padding: 1rem 2rem;
+    }
+
+    .hero img {
+      height: 50px;
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-title {
+      color: #13296b;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+
+    .form-label {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .btn-custom {
+      background-color: #13296b;
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 5px;
+      transition: 0.2s ease-in-out;
+    }
+
+    .btn-custom:hover {
+      background-color: #4b95eb;
+      color: white;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #13296b;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-button:hover {
+      text-decoration: underline;
+    }
+
+    .section-title {
+      margin-top: 2rem;
+      color: #4b95eb;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: #777;
+      padding: 0.75rem 1rem;
+    }      
+  </style>
 </head>
-<body class="upload-page">
-
-<!-- ✅ Consistent header like upload.php -->
+<body>
 <header class="hero">
-    <img src="image/masthead.png" alt="DOST Logo" />
+  <img src="image/masthead.png" alt="DOST Logo">
 </header>
+<div class="container my-5">
+  <main class="mx-auto" style="max-width: <?= empty($entries) ? '500px' : '800px' ?>;">
+    <div class="card p-4">
+      <h2 class="form-title text-center mb-4">Training Impact Assessment</h2>
+      <?php if (!empty($message)): ?>
+        <div class="alert alert-info text-center"> <?= htmlspecialchars($message) ?> </div>
+      <?php endif; ?>
 
-<div class="container mt-5">
-<?php if (!empty($message)): ?>
-    <div class="alert alert-info">
-        <?= htmlspecialchars($message) ?>
-    </div>
-<?php endif; ?>
+      <?php if (empty($entries)): ?>
+        <form method="POST" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" required>
+            <div class="invalid-feedback">Please enter your email.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Training Entry Code</label>
+            <input type="text" name="unique_code" class="form-control" required>
+            <div class="invalid-feedback">Please enter your unique code.</div>
+          </div>
+          <button type="submit" name="lookup" class="btn btn-custom w-100">Find my Training Entry</button>
+        </form>
+        <a href="index.php" class="back-button">Back to Home</a>
+      <?php endif; ?>
 
-<?php if (empty($entries)): ?>
-    <!-- ✅ Match spacing and layout -->
-    <main class="upload-main container">
-        <div class="card phase1-card">
-            <h2 class="form-title">Find Your Training Entry</h2>
-            <form method="POST" class="mb-4" id="lookupForm" novalidate>
-                <label>Email:</label>
-                <input type="email" name="email" class="form-control" required>
-                <div class="invalid-feedback">Please enter your email.</div>
+      <?php if (!empty($entries)): ?>
+        <?php foreach ($entries as $entry): ?>
+          <h5 class="section-title">Personal Information</h5>
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Name</label><input type="text" value="<?= htmlspecialchars($entry['staff_name']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Email</label><input type="text" value="<?= htmlspecialchars($entry['staff_email']) ?>" class="form-control" disabled></div>
+          </div>
 
-                <label>Training Entry Code:</label>
-                <input type="text" name="unique_code" class="form-control" required>
-                <div class="invalid-feedback">Please enter your unique code.</div>
+          <h5 class="section-title">Training Details</h5>
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Training Title</label><input type="text" value="<?= htmlspecialchars($entry['title']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Institution</label><input type="text" value="<?= htmlspecialchars($entry['institution']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Role</label><input type="text" value="<?= htmlspecialchars($entry['role']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Employment Type</label><input type="text" value="<?= htmlspecialchars($entry['staff_type']) ?>" class="form-control" disabled></div>
+          </div>
 
-                <button type="submit" name="lookup" class="custom-submit btn btn-primary mt-3">Find my Training Entry</button>
-            </form>
-            <a href="index.php" class="back-button">Back to Home</a>
-        </div>
-    </main>
-<?php endif; ?>
+          <h5 class="section-title">Training Schedule</h5>
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Start Date</label><input type="text" value="<?= htmlspecialchars($entry['start_date']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">End Date</label><input type="text" value="<?= htmlspecialchars($entry['end_date']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Hours</label><input type="text" value="<?= htmlspecialchars($entry['hours']) ?>" class="form-control" disabled></div>
+          </div>
 
-<?php if (!empty($entries)): ?>
-    <main class="upload-main container">
-        <div class="card phase1-card">
-            <div class="card-body">
-                <h2 class="form-title text-center mb-4">Training Profile</h2>
-                <?php foreach ($entries as $entry): ?>
-                    <div class="mb-4 border-bottom pb-4">
-                        <div class="row g-3">
-                            <?php foreach ([
-                                'staff_name' => 'Name',
-                                'staff_email' => 'Email',
-                                'title' => 'Training Title',
-                                'role' => 'Role',
-                                'staff_type' => 'Employment Type',
-                                'start_date' => 'Start Date',
-                                'end_date' => 'End Date',
-                                'hours' => 'Hours',
-                                'learning_and_development' => 'Learning and Development',
-                                'institution' => 'Institution',
-                                'unique_code' => 'Unique Code',
-                                'status' => 'Status',
-                                'created_at' => 'Created At'
-                            ] as $field => $label): ?>
-                                <div class="col-md-6">
-                                    <label class="form-label"><?= $label ?></label>
-                                    <input type="text" value="<?= htmlspecialchars($entry[$field]) ?>" class="form-control" disabled>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="mt-3">
-                            <?php if (!empty($entry['docs'])): ?>
-                                <p><strong>Documents:</strong></p>
-                                <ul>
-                                    <?php foreach ($entry['docs'] as $doc): ?>
-                                        <li>
-                                            Certificate:
-                                            <?php if (!empty($doc['certificate_path'])): ?>
-                                                <a href="<?= htmlspecialchars($doc['certificate_path']) ?>" target="_blank" class="btn btn-custom btn-sm">View</a>
-                                            <?php else: ?>
-                                                Not available
-                                            <?php endif; ?>
-                                        </li>
-                                        <li>
-                                            Entry Plan:
-                                            <?php if (!empty($doc['plan_path'])): ?>
-                                                <a href="<?= htmlspecialchars($doc['plan_path']) ?>" target="_blank" class="btn btn-custom btn-sm">View</a>
-                                            <?php else: ?>
-                                                Not available
-                                            <?php endif; ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php else: ?>
-                                <p>No supporting documents available.</p>
-                            <?php endif; ?>
-                        </div>
-                        <form method="POST" class="mt-3">
-                            <input type="hidden" name="training_id" value="<?= htmlspecialchars($entry['id']) ?>">
-                            <div class="mb-3">
-                                <label class="form-label">Rating (1–5)</label>
-                                <input type="number" name="rating" min="1" max="5" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Feedback</label>
-                                <textarea name="feedback" class="form-control"></textarea>
-                            </div>
-                            <button type="submit" name="feedback_submit" class="custom-submit">Submit</button>
-                        </form>
-                        <a href="javascript:history.back()" class="back-button mt-3">Back</a>
-                    </div>
-                <?php endforeach; ?>
+          <h5 class="section-title">Other Details</h5>
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Learning & Development</label><input type="text" value="<?= htmlspecialchars($entry['learning_and_development']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Unique Code</label><input type="text" value="<?= htmlspecialchars($entry['unique_code']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Status</label><input type="text" value="<?= htmlspecialchars($entry['status']) ?>" class="form-control" disabled></div>
+            <div class="col-md-6"><label class="form-label">Created At</label><input type="text" value="<?= htmlspecialchars($entry['created_at']) ?>" class="form-control" disabled></div>
+          </div>
+
+          <h5 class="section-title">Supporting Documents</h5>
+          <ul class="mt-2">
+            <?php foreach ($entry['docs'] as $doc): ?>
+              <li class="mb-1">Certificate: <?php if (!empty($doc['certificate_path'])): ?><a href="<?= htmlspecialchars($doc['certificate_path']) ?>" target="_blank" class="btn btn-custom btn-sm">View</a><?php else: ?><span class="text-muted">Not available</span><?php endif; ?></li>
+              <li class="mb-1">Entry Plan: <?php if (!empty($doc['plan_path'])): ?><a href="<?= htmlspecialchars($doc['plan_path']) ?>" target="_blank" class="btn btn-custom btn-sm">View</a><?php else: ?><span class="text-muted">Not available</span><?php endif; ?></li>
+            <?php endforeach; ?>
+          </ul>
+
+          <h5 class="section-title">Feedback & Rating</h5>
+          <form method="POST" class="mt-3">
+            <input type="hidden" name="training_id" value="<?= htmlspecialchars($entry['id']) ?>">
+            <div class="mb-3">
+              <label class="form-label">Rating (1–5)</label>
+              <input type="number" name="rating" min="1" max="5" class="form-control" required>
             </div>
-        </div>
-    </main>
-<?php endif; ?>
-
-<script src="function.js"></script>
+            <div class="mb-3">
+              <label class="form-label">Feedback</label>
+              <textarea name="feedback" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" name="feedback_submit" class="btn btn-custom w-100">Submit</button>
+          </form>
+          <a href="index.php" class="back-button">Back to Home</a>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+  </main>
+  <footer>
+    &copy; 2025 DOST X. All rights reserved.
+  </footer>
+</div>
 </body>
 </html>

@@ -133,6 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         font-size: 1.3rem;
       }
     }
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: #777;
+      padding: 0.75rem 1rem;
+    }       
   </style>
 </head>
 <body>
@@ -167,6 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </p>
   </div>
 </div>
-
+  <footer>
+    &copy; 2025 DOST X. All rights reserved.
+  </footer>
 </body>
 </html>

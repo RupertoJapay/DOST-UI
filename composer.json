@@ -1,4 +1,16 @@
 {
+    "name": "asus/training-impact-assessment-system",
+    "autoload": {
+        "psr-4": {
+            "Asus\\TrainingImpactAssessmentSystem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RupertoJapay",
+            "email": "japay.rupertoiii@gmail.com"
+        }
+    ],
     "require": {
         "phpmailer/phpmailer": "^6.10"
     }

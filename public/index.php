@@ -101,7 +101,7 @@
     .glass-card {
       background: var(--glass);
       backdrop-filter: blur(10px);
-      border-radius: 0px;
+      border-radius: 8px;
       padding: 2rem;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
       width: 100%;
@@ -189,7 +189,19 @@
     }
 
     .btn-custom:hover {
-      background-color: var(--accent); /* #4b95eb */
+      background-color: var(--accent);
+      color:#fff;
+    }
+
+    .btn-outline-primary{
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline-primary:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
   </style>
@@ -257,6 +269,12 @@
   const code = document.getElementById('code');
 
   let isCodeValid = false;
+
+  // ✅ Clear sessionStorage if coming from view_profile.php with ?clear=1
+if (window.location.search.includes('clear=1')) {
+  sessionStorage.removeItem('email');
+  sessionStorage.removeItem('code');
+}
 
   document.addEventListener('DOMContentLoaded', () => {
     // Load from sessionStorage

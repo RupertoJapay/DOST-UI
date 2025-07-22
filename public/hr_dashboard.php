@@ -19,8 +19,10 @@ if ($status === 'Pending' || $status === 'Completed') {
     $params[] = $status;
 }
 if ($search !== '') {
-    $where[] = 'te.unique_code LIKE ?';
-    $params[] = '%' . $search . '%';
+    $where[] = 'te.unique_code LIKE ? OR te.staff_name LIKE ? OR te.title LIKE ?';
+    $params[] =  $search . '%';
+    $params[] =  $search . '%';
+    $params[] =  $search . '%';
 }
 
 $whereSql = '';
@@ -206,6 +208,13 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
         align-items: flex-start;
       }
     }
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: #777;
+      padding: 0.75rem 1rem;
+    }   
+
   </style>
 </head>
 <body>
@@ -230,10 +239,10 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <!-- Filter Section -->
-    <div class="filter-card mb-3">
+    <div class="filter-card mb-4">
       <form method="GET">
-        <div class="row g-2 align-items-end">
-          <div class="col-md-3">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-4">
             <label for="typeFilter" class="form-label">Employment Type</label>
             <select name="staff_type" id="typeFilter" class="form-select">
               <option value="">Show All</option>
@@ -241,7 +250,7 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <option value="Permanent" <?= (isset($_GET['staff_type']) && $_GET['staff_type'] === 'Permanent') ? 'selected' : '' ?>>Permanent</option>
             </select>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label for="statusFilter" class="form-label">Status</label>
             <select name="status" id="statusFilter" class="form-select">
               <option value="">Show All</option>
@@ -250,12 +259,8 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </select>
           </div>
           <div class="col-md-4">
-            <label for="search" class="form-label">Search Unique Code</label>
-            <input type="text" name="search" class="form-control" placeholder="e.g. ABC123" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" />
-          </div>
-          <div class="col-md-2">
-            <label class="form-label d-block">&nbsp;</label>
-            <button type="submit" class="btn btn-custom w-100">Search</button>
+            <label for="search" class="form-label">Search</label>
+            <input type="text" name="search" id="searchInput" class="form-control" placeholder="e.g. ABC123, John, Training Title" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" />
           </div>
         </div>
       </form>
@@ -330,5 +335,29 @@ $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   </div>
   <script src="function.js"></script>
+  <script>
+document.getElementById('searchInput').addEventListener('input', function () {
+  const query = this.value;
+
+  const params = new URLSearchParams(window.location.search);
+  params.set('search', query);
+
+  fetch('hr_dashboard.php?' + params.toString())
+    .then(response => response.text())
+    .then(html => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const newTbody = tempDiv.querySelector('tbody');
+
+      const currentTbody = document.querySelector('table.custom-table tbody');
+      if (newTbody && currentTbody) {
+        currentTbody.innerHTML = newTbody.innerHTML;
+      }
+    });
+});
+</script>
+  <footer>
+    &copy; 2025 DOST X. All rights reserved.
+  </footer>
 </body>
 </html>

@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
+        'name' => 'asus/training-impact-assessment-system',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '2540364e95238ec6ac15f2d1eb4509776cdf012c',
+        'reference' => 'ada192674d7e9eb1f714946fbe758ff92b95f10c',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'asus/training-impact-assessment-system' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '2540364e95238ec6ac15f2d1eb4509776cdf012c',
+            'reference' => 'ada192674d7e9eb1f714946fbe758ff92b95f10c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

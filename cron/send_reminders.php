@@ -1,11 +1,14 @@
 <?php
 file_put_contents(__DIR__ . '/cron_log.txt', date('Y-m-d H:i:s') . " - Script triggered\n", FILE_APPEND);
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // ✅ Load PHPMailer
 require __DIR__ . '/../vendor/autoload.php'; // ✅ Correct and reliable
+require_once __DIR__ . '/../vendor/phpmailer/phpmailer/src/Exception.php';
 
 
 // ✅ Connect to your DB
@@ -37,7 +40,7 @@ foreach ($entries as $entry) {
         $mail->setFrom('system.testinggg@gmail.com', 'Dost System');
         $mail->addAddress($entry['staff_email'], $entry['staff_name']);
         $mail->Subject = "Training Reminder";
-        $mail->Body    = "Dear " . $entry['staff_name'] . ",\n\nWe hope this message finds you well. \n\n This is a courteous reminder that you are required to complete the Training Impact Assessment related to your recent participation in the training titled: " . $entry['title'] . "\n\nYour unique code is: " . $entry['unique_code'] . "\n\nPlease use it to complete your training form.\n\nThank you!";
+        $mail->Body    = "Dear " . $entry['staff_name'] . ",\n\nWe hope this message finds you well. \n\nThis is a courteous reminder that you are required to complete the Training Impact Assessment related to your recent participation in the training titled: " . $entry['title'] . "\n\nYour unique code is: " . $entry['unique_code'] . "\n\nPlease use it to complete your training form.\n\nThank you!";
 
         // Send the email
         $mail->send();
